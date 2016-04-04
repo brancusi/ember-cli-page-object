@@ -4,7 +4,7 @@ import { create } from './create';
 import { count } from '../page-object';
 
 function merge(target, ...objects) {
-  objects.forEach(o => Ember.merge(target, o));
+  objects.forEach(o => Ember.assign(target, o));
 
   return target;
 }
@@ -154,4 +154,3 @@ export function collection(definition) {
     }
   };
 }
-

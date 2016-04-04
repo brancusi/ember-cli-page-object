@@ -8,7 +8,7 @@ import { clickOnText } from './actions/click-on-text';
 import { clickable } from './actions/clickable';
 import { bindContextMethods } from './context';
 
-const { merge } = Ember;
+const { assign } = Ember;
 
 var thenDescriptor = {
   isDescriptor: true,
@@ -120,7 +120,7 @@ export function create(definition, options = {}) {
   const builder = {
     object: buildObject
   };
-  const page = Ceibo.create(definition, merge({ builder }, options));
+  const page = Ceibo.create(definition, assign({ builder }, options));
 
   if (page) {
     bindContextMethods(page);

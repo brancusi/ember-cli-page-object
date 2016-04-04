@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-var { merge, $ } = Ember;
+var { assign, $ } = Ember;
 
 function fillInDynamicSegments(path, params) {
   return path.split('/').map(function(segment) {
@@ -83,7 +83,7 @@ export function visitable(path) {
     isDescriptor: true,
 
     value(dynamicSegmentsAndQueryParams = {}) {
-      var params = merge({}, dynamicSegmentsAndQueryParams);
+      var params = assign({}, dynamicSegmentsAndQueryParams);
       var fullPath = fillInDynamicSegments(path, params);
 
       fullPath = appendQueryParams(fullPath, params);

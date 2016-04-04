@@ -3,14 +3,14 @@ import { findElement, findElementWithAssert, buildSelector, getContext } from '.
 
 /* global wait, find, click */
 
-var { merge } = Ember;
+var { assign } = Ember;
 
 function childSelector(tree, selector, textToClick, options) {
   // Suppose that we have something like `<form><button>Submit</button></form>`
   // In this case <form> and <button> elements contains "Submit" text, so, we'll
   // want to __always__ click on the __last__ element that contains the text.
   var selectorWithSpace = (selector || '') + ' ';
-  var opts = merge({ contains: textToClick, last: true, multiple: true }, options);
+  var opts = assign({ contains: textToClick, last: true, multiple: true }, options);
   var fullSelector = buildSelector(tree, selectorWithSpace, opts);
 
   if (findElement(tree, selectorWithSpace, opts).length) {
@@ -24,7 +24,7 @@ function actualSelector(tree, selector, textToClick, options) {
   if (childSel) {
     return childSel;
   } else {
-    return buildSelector(tree, selector, merge({ contains: textToClick }, options));
+    return buildSelector(tree, selector, assign({ contains: textToClick }, options));
   }
 }
 
